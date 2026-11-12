@@ -1,0 +1,356 @@
+@import "tailwindcss";
+
+:root {
+  --ivory: #f7f5f0;
+  --paper: #fbfaf7;
+  --stone: #e5e0d7;
+  --stone-deep: #d6cfc2;
+  --forest: #183c35;
+  --forest-deep: #0f2823;
+  --sand: #b69b79;
+  --sand-deep: #8f7752;
+  --sand-soft: #d8c8b0;
+  --charcoal: #252725;
+  --muted: #5d625e;
+  --line: rgba(37, 39, 37, 0.12);
+  --line-light: rgba(247, 245, 240, 0.16);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-paper: var(--paper);
+  --color-stone: var(--stone);
+  --color-stone-deep: var(--stone-deep);
+  --color-forest: var(--forest);
+  --color-forest-deep: var(--forest-deep);
+  --color-sand: var(--sand);
+  --color-sand-deep: var(--sand-deep);
+  --color-sand-soft: var(--sand-soft);
+  --color-charcoal: var(--charcoal);
+  --color-muted: var(--muted);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--forest) 20%, white);
+  color: var(--forest-deep);
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+}
+
+.font-display em,
+.h-display em {
+  font-style: italic;
+  color: var(--sand-deep);
+}
+
+.on-dark .font-display em,
+.on-dark .h-display em,
+.h-display.on-dark em {
+  color: var(--sand-soft);
+}
+
+/* ---------- Layout ---------- */
+.section-pad {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+}
+
+.container-site {
+  width: min(1180px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.container-wide {
+  width: min(1320px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+/* ---------- Type helpers ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sand-deep);
+  font-weight: 600;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.on-dark .eyebrow {
+  color: var(--sand-soft);
+}
+
+.h-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition:
+    background 0.3s var(--ease),
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--sand);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: var(--forest);
+  color: var(--ivory);
+}
+
+.btn-primary:hover {
+  background: var(--forest-deep);
+}
+
+.btn-primary .btn-arrow,
+.btn-light .btn-arrow,
+.btn-ghost .btn-arrow {
+  transition: transform 0.3s var(--ease);
+}
+
+.btn-primary:hover .btn-arrow,
+.btn-light:hover .btn-arrow,
+.btn-ghost:hover .btn-arrow {
+  transform: translate(3px, -3px);
+}
+
+.btn-outline {
+  color: var(--forest);
+  border: 1px solid color-mix(in srgb, var(--forest) 30%, transparent);
+}
+
+.btn-outline:hover {
+  border-color: var(--forest);
+  background: color-mix(in srgb, var(--forest) 6%, transparent);
+}
+
+.btn-light {
+  background: var(--ivory);
+  color: var(--forest);
+}
+
+.btn-light:hover {
+  background: #fff;
+}
+
+.btn-ghost {
+  color: var(--ivory);
+  border: 1px solid var(--line-light);
+}
+
+.btn-ghost:hover {
+  background: rgba(247, 245, 240, 0.08);
+  border-color: rgba(247, 245, 240, 0.4);
+}
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s var(--ease);
+}
+
+.link-underline:hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+
+/* ---------- Images ---------- */
+.image-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--stone);
+}
+
+.image-zoom img {
+  transition: transform 1.4s var(--ease);
+}
+
+.group:hover .image-zoom img,
+.image-zoom:hover img {
+  transform: scale(1.045);
+}
+
+.arch {
+  border-top-left-radius: 999px;
+  border-top-right-radius: 999px;
+}
+
+/* ---------- Reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.3s var(--ease);
+}
+
+.clip-reveal.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 1s var(--ease) both;
+}
+.rise-1 {
+  animation-delay: 0.08s;
+}
+.rise-2 {
+  animation-delay: 0.18s;
+}
+.rise-3 {
+  animation-delay: 0.3s;
+}
+.rise-4 {
+  animation-delay: 0.42s;
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.settle {
+  animation: settle 2.4s var(--ease) both;
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---------- Details ---------- */
+.hairline {
+  height: 1px;
+  background: var(--line);
+}
+
+.map-tint {
+  filter: grayscale(0.85) sepia(0.18) contrast(0.95) brightness(1.02);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .clip-reveal,
+  .rise,
+  .settle,
+  .marquee-track {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .image-zoom img {
+    transition: none !important;
+  }
+}
